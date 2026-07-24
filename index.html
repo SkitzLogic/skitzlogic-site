@@ -808,8 +808,7 @@
   @media (max-width: 768px) {
     nav { padding: 14px 20px; }
     .nav-logo img { height: 32px; }
-    .nav-links { gap: 0; }
-    .nav-links li:not(:last-child) { display: none; }
+    .nav-links { gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
     .album-layout { grid-template-columns: 1fr; gap: 48px; }
     .new-release-layout { grid-template-columns: 1fr; gap: 48px; }
     .acts-grid { grid-template-columns: 1fr; }
@@ -835,12 +834,9 @@
     <img src="assets/skitzlogic-logo.png" alt="SkitzLogic logo">
   </a>
   <ul class="nav-links">
-    <li><a href="#new-release">New Release</a></li>
-    <li><a href="#album">Album</a></li>
-    <li><a href="#journey">Journey</a></li>
-    <li><a href="#visualizers">Visualizers</a></li>
-    <li><a href="#about">Mind</a></li>
-    <li><a href="#cta" class="btn-primary" style="padding:10px 20px;font-size:0.75rem;">Listen Now</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mission.html">The Mission</a></li>
+    <li><a href="index.html#cta" class="btn-primary" style="padding:10px 20px;font-size:0.75rem;">Listen Now</a></li>
   </ul>
 </nav>
 
