@@ -299,27 +299,11 @@
     align-items: center;
     justify-content: center;
   }
-  .album-art canvas { position: absolute; inset: 0; }
-  .album-art-text {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 24px;
-  }
-  .album-art-text .art-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1.6rem, 3.4vw, 2.4rem);
-    font-weight: 700;
-    color: var(--ghost);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-  }
-  .album-art-text .art-mark {
-    width: 56px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--cyan), transparent);
-    margin: 20px auto;
-    opacity: 0.6;
+  .album-art-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .album-badge {
     position: absolute;
@@ -372,6 +356,43 @@
     text-transform: uppercase;
     color: var(--muted);
     margin-top: 4px;
+  }
+
+  /* ── NEW RELEASE SECTION ── */
+  #new-release {
+    padding: 100px 24px 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .new-release-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1100px;
+    width: 100%;
+    align-items: center;
+  }
+  .new-release-copy h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .new-release-copy p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    max-width: 480px;
+  }
+  .new-release-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
   }
 
   /* ── ALBUM JOURNEY (ACTS) ── */
@@ -790,6 +811,7 @@
     .nav-links { gap: 0; }
     .nav-links li:not(:last-child) { display: none; }
     .album-layout { grid-template-columns: 1fr; gap: 48px; }
+    .new-release-layout { grid-template-columns: 1fr; gap: 48px; }
     .acts-grid { grid-template-columns: 1fr; }
     .visualizers-grid { grid-template-columns: 1fr; }
     .album-stats { gap: 24px; }
@@ -810,9 +832,10 @@
 <!-- Navigation -->
 <nav id="nav" role="navigation" aria-label="Main">
   <a href="#hero" class="nav-logo" aria-label="SkitzLogic home">
-    <img src="assets/skitzlogic-logo.PNG" alt="SkitzLogic">
+    <img src="assets/skitzlogic-logo.png" alt="SkitzLogic logo">
   </a>
   <ul class="nav-links">
+    <li><a href="#new-release">New Release</a></li>
     <li><a href="#album">Album</a></li>
     <li><a href="#journey">Journey</a></li>
     <li><a href="#visualizers">Visualizers</a></li>
@@ -824,7 +847,7 @@
 <!-- ── HERO ── -->
 <section id="hero" aria-label="Hero">
   <div class="hero-logo-wrap">
-    <img src="assets/skitzlogic-logo.PNG" alt="SkitzLogic">
+    <img src="assets/skitzlogic-logo.png" alt="SkitzLogic logo">
   </div>
   <p class="hero-line-1">Welcome to my mind.</p>
   <h1 class="hero-title">
@@ -834,17 +857,45 @@
   <p class="hero-tagline">Every thought has a soundtrack.</p>
   <canvas id="waveform-canvas" aria-hidden="true" aria-label="Animated waveform visualizer"></canvas>
   <div class="hero-cta-group">
-    <a href="#cta" class="btn-primary">
+    <a href="https://open.spotify.com/album/1H5fIrszJyVHQlNIZ6z2zd?si=vMjSqMi3QdyKd3gL0Fex7g&utm_source=copy-link" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Listen to the album on Spotify">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
         <polygon points="2,1 13,7 2,13" fill="white"/>
       </svg>
-      Stream the Album
+      Listen to the Album
     </a>
-    <a href="#visualizers" class="btn-secondary">Watch Visualizers</a>
+    <a href="https://open.spotify.com/album/0n6EWXZznESssoL4o12oPo?si=yfcnbL9DRo-_suSrwzI8Ag&utm_source=copy-link" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Listen to the new release Break Away on Spotify">
+      New Release: Break Away
+    </a>
+    <a href="#visualizers" class="btn-secondary" aria-label="Watch SkitzLogic visualizers">Watch Visualizers</a>
   </div>
   <div class="scroll-hint" aria-hidden="true">
     <span>Scroll</span>
     <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<div class="section-divider" aria-hidden="true"></div>
+
+<!-- ── NEW RELEASE ── -->
+<section id="new-release" aria-label="New Release">
+  <p class="section-label reveal">New Release</p>
+  <div class="new-release-layout">
+    <div class="album-art-wrap reveal reveal-delay-1">
+      <div class="album-art">
+        <div class="album-art-inner">
+          <img src="assets/break-away-cover.png" alt="Break Away by SkitzLogic">
+        </div>
+      </div>
+      <div class="album-badge">New</div>
+    </div>
+    <div class="new-release-copy">
+      <h2 class="reveal reveal-delay-1">Break Away</h2>
+      <p class="reveal reveal-delay-2">An emotional melodic dubstep journey through love, distance, acceptance, and the strength it takes to let go.</p>
+      <div class="new-release-actions reveal reveal-delay-3">
+        <a href="https://open.spotify.com/album/0n6EWXZznESssoL4o12oPo?si=yfcnbL9DRo-_suSrwzI8Ag&utm_source=copy-link" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Listen to Break Away on Spotify">Listen on Spotify</a>
+        <a href="https://music.apple.com/us/album/break-away-single/6792140922" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="Listen to Break Away on Apple Music">Listen on Apple Music</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -857,11 +908,7 @@
     <div class="album-art-wrap reveal reveal-delay-1">
       <div class="album-art">
         <div class="album-art-inner">
-          <canvas id="album-art-canvas" aria-hidden="true"></canvas>
-          <div class="album-art-text">
-            <p class="art-title">Thinking<br>Out Loud</p>
-            <div class="art-mark" aria-hidden="true"></div>
-          </div>
+          <img src="assets/thinking-out-loud-cover.png" alt="Thinking Out Loud by SkitzLogic">
         </div>
       </div>
       <div class="album-badge">Out Now</div>
@@ -885,7 +932,7 @@
         </div>
       </div>
       <div class="reveal reveal-delay-4">
-        <a href="#cta" class="btn-primary">Stream Now</a>
+        <a href="https://open.spotify.com/album/1H5fIrszJyVHQlNIZ6z2zd?si=vMjSqMi3QdyKd3gL0Fex7g&utm_source=copy-link" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Stream Thinking Out Loud on Spotify">Stream Now</a>
       </div>
     </div>
   </div>
@@ -930,31 +977,31 @@
     <p>Every track has a signal. These are the ones rendered in light.</p>
   </div>
   <div class="visualizers-grid">
-    <a href="#" class="visualizer-card reveal" aria-label="Watch Spark. Elevate. Xplode.">
+    <a href="https://youtube.com/playlist?list=PLE7DpZoltcFM&si=nmPDeY7Oknd9zXH1" target="_blank" rel="noopener noreferrer" class="visualizer-card reveal" aria-label="Watch the Spark. Elevate. Xplode. playlist on YouTube">
       <div class="visualizer-thumb">
         <div class="visualizer-play" aria-hidden="true"><div class="play-icon-lg"></div></div>
       </div>
       <div class="visualizer-body">
         <p class="visualizer-title">Spark. Elevate. Xplode.</p>
-        <span class="visualizer-watch">Watch</span>
+        <span class="visualizer-watch">Watch Playlist</span>
       </div>
     </a>
-    <a href="#" class="visualizer-card reveal reveal-delay-1" aria-label="Watch Take Your Pain Away">
+    <a href="https://youtu.be/kHbOjfooXUc" target="_blank" rel="noopener noreferrer" class="visualizer-card reveal reveal-delay-1" aria-label="Watch the Slow Motion visualizer on YouTube">
       <div class="visualizer-thumb">
         <div class="visualizer-play" aria-hidden="true"><div class="play-icon-lg"></div></div>
       </div>
       <div class="visualizer-body">
-        <p class="visualizer-title">Take Your Pain Away</p>
-        <span class="visualizer-watch">Watch</span>
+        <p class="visualizer-title">Slow Motion</p>
+        <span class="visualizer-watch">Watch Visualizer</span>
       </div>
     </a>
-    <a href="#" class="visualizer-card reveal reveal-delay-2" aria-label="Watch Let's Get Dirty">
+    <a href="https://youtu.be/kg1JrNghIcE" target="_blank" rel="noopener noreferrer" class="visualizer-card reveal reveal-delay-2" aria-label="Watch the Let's Get Dirty visualizer on YouTube">
       <div class="visualizer-thumb">
         <div class="visualizer-play" aria-hidden="true"><div class="play-icon-lg"></div></div>
       </div>
       <div class="visualizer-body">
-        <p class="visualizer-title">Let's Get Dirty</p>
-        <span class="visualizer-watch">Watch</span>
+        <p class="visualizer-title">Let’s Get Dirty</p>
+        <span class="visualizer-watch">Watch Visualizer</span>
       </div>
     </a>
   </div>
@@ -986,28 +1033,27 @@
   <h2 class="reveal"><span>Enter the sound.</span></h2>
   <p class="reveal reveal-delay-1">Thinking Out Loud is available everywhere you stream music, and everywhere the visuals live.</p>
   <div class="cta-buttons reveal reveal-delay-2">
-    <a href="https://open.spotify.com" target="_blank" rel="noopener" class="btn-primary">
+    <a href="https://open.spotify.com/album/1H5fIrszJyVHQlNIZ6z2zd?si=vMjSqMi3QdyKd3gL0Fex7g&utm_source=copy-link" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Stream Thinking Out Loud on Spotify">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       Stream the Album
     </a>
-    <a href="#visualizers" class="btn-secondary">Watch Visualizers</a>
-    <a href="#" class="btn-secondary">Follow SkitzLogic</a>
+    <a href="#visualizers" class="btn-secondary" aria-label="Watch SkitzLogic visualizers">Watch Visualizers</a>
+    <a href="https://www.instagram.com/skitzlogic?utm_source=qr" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="Follow SkitzLogic on Instagram">Follow SkitzLogic</a>
   </div>
   <p class="platforms-label reveal reveal-delay-3">Also available on</p>
   <div class="platforms reveal reveal-delay-3">
-    <a href="https://music.apple.com" target="_blank" rel="noopener" class="platform-link">Apple Music</a>
-    <a href="https://tidal.com" target="_blank" rel="noopener" class="platform-link">Tidal</a>
-    <a href="https://youtube.com" target="_blank" rel="noopener" class="platform-link">YouTube Music</a>
-    <a href="https://amazon.com/music" target="_blank" rel="noopener" class="platform-link">Amazon Music</a>
-    <a href="https://soundcloud.com" target="_blank" rel="noopener" class="platform-link">SoundCloud</a>
-    <a href="https://tiktok.com" target="_blank" rel="noopener" class="platform-link">TikTok</a>
+    <a href="https://music.apple.com/us/album/thinking-out-loud/6771119236" target="_blank" rel="noopener noreferrer" class="platform-link" aria-label="Listen to Thinking Out Loud on Apple Music">Apple Music</a>
+    <a href="https://open.spotify.com/artist/4h5ud3TltHd7bjJO6Pa1Aa?si=UJ6dFVVQSYuJcUBg4A6pyQ&utm_source=copy-link" target="_blank" rel="noopener noreferrer" class="platform-link" aria-label="Visit SkitzLogic on Spotify">Spotify Artist</a>
+    <a href="https://youtube.com/@skitzlogic?si=gFO_1HIEcXQcpeAi" target="_blank" rel="noopener noreferrer" class="platform-link" aria-label="Visit SkitzLogic on YouTube">YouTube</a>
+    <a href="https://www.tiktok.com/@therealskitzlogic?_r=1&_t=ZT-98IyXavgIur" target="_blank" rel="noopener noreferrer" class="platform-link" aria-label="Visit SkitzLogic on TikTok">TikTok</a>
+    <a href="https://www.instagram.com/skitzlogic?utm_source=qr" target="_blank" rel="noopener noreferrer" class="platform-link" aria-label="Visit SkitzLogic on Instagram">Instagram</a>
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-logo">
-    <img src="assets/skitzlogic-logo.PNG" alt="SkitzLogic">
+    <img src="assets/skitzlogic-logo.png" alt="SkitzLogic logo">
   </div>
   <p class="footer-tagline">Every thought has a soundtrack.</p>
   <p class="footer-copy">© 2026 SkitzLogic. All rights reserved.</p>
@@ -1146,55 +1192,6 @@ window.addEventListener('scroll', () => {
   drawWave();
 })();
 
-// ── ALBUM ART CANVAS ──
-(function() {
-  const canvas = document.getElementById('album-art-canvas');
-  const ctx = canvas.getContext('2d');
-  let t = 0;
-
-  function resize() {
-    const parent = canvas.parentElement;
-    const dpr = window.devicePixelRatio || 1;
-    canvas.style.width = parent.offsetWidth + 'px';
-    canvas.style.height = parent.offsetHeight + 'px';
-    canvas.width = parent.offsetWidth * dpr;
-    canvas.height = parent.offsetHeight * dpr;
-    ctx.scale(dpr, dpr);
-  }
-  resize();
-  window.addEventListener('resize', () => { resize(); }, { passive: true });
-
-  function drawArt() {
-    const W = canvas.getBoundingClientRect().width;
-    const H = canvas.getBoundingClientRect().height;
-    ctx.clearRect(0, 0, W, H);
-    t += 0.008;
-
-    for (let i = 0; i < 8; i++) {
-      const angle = (i / 8) * Math.PI * 2 + t * 0.3;
-      const x = W/2 + Math.cos(angle) * W * 0.32;
-      const y = H/2 + Math.sin(angle) * H * 0.32;
-      const r = (W * 0.25) + Math.sin(t + i) * W * 0.05;
-      const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
-      const alpha = 0.04 + Math.sin(t * 0.7 + i) * 0.02;
-      grad.addColorStop(0, i % 2 === 0 ? `rgba(123,47,190,${alpha})` : `rgba(0,229,255,${alpha * 0.5})`);
-      grad.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, W, H);
-    }
-
-    for (let r = W * 0.1; r < W * 0.6; r += W * 0.1) {
-      ctx.beginPath();
-      ctx.arc(W/2, H/2, r + Math.sin(t + r * 0.01) * 4, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(123,47,190,${0.06 - r * 0.0001})`;
-      ctx.lineWidth = 0.5;
-      ctx.stroke();
-    }
-
-    requestAnimationFrame(drawArt);
-  }
-  drawArt();
-})();
 </script>
 </body>
 </html>
